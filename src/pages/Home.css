@@ -1,0 +1,80 @@
+h1 {
+  font-weight: normal;
+  margin-left: 25px;
+  padding-top: 40px;
+}
+
+p {
+  font-size: 19px;
+  margin: 0px 25px 0px 25px;
+}
+
+.home-container {
+  background-color: white;
+  height: 950px;
+  width: 600px;
+  border-radius: 10px;
+}
+
+.image-wrapper {
+  margin: 100px 50px 50px 50px;
+}
+
+.image-preview,
+img {
+  background-color: #eaeaea;
+
+  width: 500px;
+  height: 500px;
+  border-radius: 10px;
+}
+
+.button-container {
+  display: flex;
+  /* gap: 10px; can use this method to add space in btwn  */
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.upload-btn {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #3b83f6;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+  width: 60%;
+  font-size: 19px;
+}
+
+.reset-btn {
+  padding: 10px 43px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  color: #3b83f6;
+  border-color: #3b83f6;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  font-size: 19px;
+}
+
+.process-btn {
+  background-color: #22c55e;
+  color: white;
+  padding: 15px 120px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 19px;
+  width: 550px;
+}
+
+.process-btn-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

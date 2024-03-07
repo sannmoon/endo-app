@@ -1,0 +1,28 @@
+import "./Home.css";
+import placeholder from "../assets/placeholder.svg";
+
+export const Home = () => {
+  return (
+    <div className="home-container">
+      <h1>Endo Diet</h1>
+      <p>
+        The application helps identify products that are or aren't healthy for
+        women suffering from endometriosis
+      </p>
+
+      <div className="image-wrapper">
+        <div className="image-preview">
+          <img src={placeholder} alt="Image not found" />
+        </div>
+
+        <div className="button-container">
+          <button className="upload-btn">Upload Image</button>
+          <button className="reset-btn">Reset</button>
+        </div>
+      </div>
+      <div className="process-btn-wrapper">
+        <button className="process-btn">Process Image</button>
+      </div>
+    </div>
+  );
+};
