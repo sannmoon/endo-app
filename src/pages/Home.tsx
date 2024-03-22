@@ -16,7 +16,10 @@ export const Home = () => {
         </div>
 
         <div className="button-container">
-          <button className="upload-btn">Upload Image</button>
+          <label className="custom-file-upload">
+            <input type="file" className="upload-img" />
+            Upload Image
+          </label>
           <button className="reset-btn">Reset</button>
         </div>
       </div>

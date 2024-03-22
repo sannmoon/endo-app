@@ -37,7 +37,7 @@
   justify-content: center;
 }
 
-.upload-btn {
+.custom-file-upload {
   padding: 10px 20px;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -47,6 +47,8 @@
   margin-right: 20px;
   width: 60%;
   font-size: 19px;
+  display: flex;
+  justify-content: center;
 }
 
 .reset-btn {
@@ -77,4 +79,14 @@
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+.custom-file-upload:hover,
+.reset-btn:hover,
+.process-btn:hover {
+  filter: brightness(85%);
+}
+
+.upload-img[type="file"] {
+  display: none;
 }
