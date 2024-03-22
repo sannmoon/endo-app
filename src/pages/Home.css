@@ -87,6 +87,6 @@
   filter: brightness(85%);
 }
 
-input[type="file"] {
+.upload-img[type="file"] {
   display: none;
 }

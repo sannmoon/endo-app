@@ -17,7 +17,7 @@ export const Home = () => {
 
         <div className="button-container">
           <label className="custom-file-upload">
-            <input type="file" />
+            <input type="file" className="upload-img" />
             Upload Image
           </label>
           <button className="reset-btn">Reset</button>
