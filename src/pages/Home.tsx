@@ -1,7 +1,27 @@
 import "./Home.css";
 import placeholder from "../assets/placeholder.svg";
+import { useState } from "react";
 
 export const Home = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(e.target.files[0]);
+
+    reader.onload = () => {
+      setSelectedImage(reader.result as string);
+    };
+  };
+
+  const handleResetImage = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <div className="home-container">
       <h1 className="title">Endo Diet</h1>
@@ -12,15 +32,25 @@ export const Home = () => {
 
       <div className="image-wrapper">
         <div className="image-preview">
-          <img className="image" src={placeholder} alt="Image not found" />
+          <img
+            className="image"
+            src={selectedImage ?? placeholder}
+            alt="Selected Image"
+          />
         </div>
 
         <div className="button-container">
           <label className="custom-file-upload">
-            <input type="file" className="upload-img" />
+            <input
+              type="file"
+              className="upload-img"
+              onChange={handleImageChange}
+            />
             Upload Image
           </label>
-          <button className="reset-btn">Reset</button>
+          <button className="reset-btn" onClick={handleResetImage}>
+            Reset
+          </button>
         </div>
       </div>
       <div className="process-btn-wrapper">
