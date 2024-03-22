@@ -1,10 +1,10 @@
-h1 {
+.title {
   font-weight: normal;
   margin-left: 25px;
   padding-top: 40px;
 }
 
-p {
+.subtitle {
   font-size: 19px;
   margin: 0px 25px 0px 25px;
 }
@@ -21,7 +21,7 @@ p {
 }
 
 .image-preview,
-img {
+.image {
   background-color: #eaeaea;
 
   width: 500px;

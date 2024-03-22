@@ -4,15 +4,15 @@ import placeholder from "../assets/placeholder.svg";
 export const Home = () => {
   return (
     <div className="home-container">
-      <h1>Endo Diet</h1>
-      <p>
+      <h1 className="title">Endo Diet</h1>
+      <p className="subtitle">
         The application helps identify products that are or aren't healthy for
         women suffering from endometriosis
       </p>
 
       <div className="image-wrapper">
         <div className="image-preview">
-          <img src={placeholder} alt="Image not found" />
+          <img className="image" src={placeholder} alt="Image not found" />
         </div>
 
         <div className="button-container">
