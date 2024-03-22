@@ -3,15 +3,18 @@ import placeholder from "../assets/placeholder.svg";
 import { useState } from "react";
 
 export const Home = () => {
-  const [selectedImage, setSelectedImage] = useState<any>(null);
-  const handleImageChange = (e: any) => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+
     const reader = new FileReader();
 
     reader.readAsDataURL(e.target.files[0]);
 
     reader.onload = () => {
-      console.log("called: ", reader);
-      setSelectedImage(reader.result);
+      setSelectedImage(reader.result as string);
     };
   };
 
