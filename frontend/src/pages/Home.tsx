@@ -1,6 +1,7 @@
 import "./Home.css";
 import placeholder from "../assets/placeholder.svg";
 import { useState } from "react";
+import Axios from "axios";
 
 export const Home = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -20,6 +21,12 @@ export const Home = () => {
 
   const handleResetImage = () => {
     setSelectedImage(null);
+  };
+
+  const handleAnalyzeImage = () => {
+    Axios.post(`http://localhost:3000/analyze-image`, {
+      image: selectedImage,
+    }).then((res) => res.data);
   };
 
   return (
@@ -54,7 +61,9 @@ export const Home = () => {
         </div>
       </div>
       <div className="process-btn-wrapper">
-        <button className="process-btn">Process Image</button>
+        <button className="process-btn" onClick={handleAnalyzeImage}>
+          Process Image
+        </button>
       </div>
     </div>
   );
