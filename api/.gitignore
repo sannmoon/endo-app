@@ -1,3 +1,4 @@
 # these should not be sent to github
 dist
 node_modules
+.env
