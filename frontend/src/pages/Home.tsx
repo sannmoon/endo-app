@@ -21,12 +21,15 @@ export const Home = () => {
 
   const handleResetImage = () => {
     setSelectedImage(null);
+    setGeneratedResults(null);
   };
+
+  const [generatedResult, setGeneratedResults] = useState<string | null>();
 
   const handleAnalyzeImage = () => {
     Axios.post(`http://localhost:3000/analyze-image`, {
       image: selectedImage,
-    }).then((res) => res.data);
+    }).then((res) => setGeneratedResults(res.data.result));
   };
 
   return (
@@ -65,6 +68,12 @@ export const Home = () => {
           Process Image
         </button>
       </div>
+      {generatedResult && (
+        <p
+          dangerouslySetInnerHTML={{ __html: generatedResult }}
+          className="generated-data"
+        ></p>
+      )}
     </div>
   );
 };
