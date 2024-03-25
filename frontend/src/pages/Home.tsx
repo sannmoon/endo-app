@@ -16,6 +16,7 @@ export const Home = () => {
 
     reader.onload = () => {
       setSelectedImage(reader.result as string);
+      e.target.value = "";
     };
   };
 
