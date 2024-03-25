@@ -26,10 +26,20 @@ export const Home = () => {
 
   const [generatedResult, setGeneratedResults] = useState<string | null>();
 
-  const handleAnalyzeImage = () => {
-    Axios.post(`http://localhost:3000/analyze-image`, {
-      image: selectedImage,
-    }).then((res) => setGeneratedResults(res.data.result));
+  const [loading, setLoading] = useState(false);
+
+  const handleAnalyzeImage = async () => {
+    setLoading(true);
+    try {
+      const res = await Axios.post(`http://localhost:3000/analyze-image`, {
+        image: selectedImage,
+      });
+      setGeneratedResults(res.data.result);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error(error);
+    }
   };
 
   return (
@@ -65,7 +75,7 @@ export const Home = () => {
       </div>
       <div className="process-btn-wrapper">
         <button className="process-btn" onClick={handleAnalyzeImage}>
-          Process Image
+          {loading ? <> Analyzing.. </> : <>Process Image</>}
         </button>
       </div>
       {generatedResult && (
