@@ -19,8 +19,6 @@ app.get("/health", (req: Request, res: Response) => {
 });
 
 app.post("/analyze-image", async (req: Request, res: Response) => {
-  // console.log(req.body.image);
-
   const response = await openai.chat.completions.create({
     model: "gpt-4-vision-preview",
     messages: [
@@ -46,7 +44,6 @@ app.post("/analyze-image", async (req: Request, res: Response) => {
       },
     ],
   });
-  console.log(response.choices[0].message.content);
 
   res.send({ result: response.choices[0].message.content });
 });
