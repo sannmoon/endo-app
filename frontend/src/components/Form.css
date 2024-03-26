@@ -1,0 +1,43 @@
+.title-regis {
+  font-weight: bold;
+  margin-left: 25px;
+  padding-top: 40px;
+}
+
+.subtitle-regis {
+  font-size: 19px;
+  margin: 0px 25px 0px 25px;
+  color: #777778;
+}
+
+.regis-container {
+  background-color: white;
+  height: auto;
+  width: 600px;
+  border-radius: 10px;
+  padding-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.regis-btn {
+  background-color: #3b83f6;
+  color: white;
+  padding: 15px 120px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 19px;
+  width: 550px;
+}
+
+.regis-btn-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: ;
+}

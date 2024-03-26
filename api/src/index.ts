@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import OpenAI from "openai";
 
-dotenv.config();
+dotenv.config(); // ⚠️ should always be written down first before putting the env variable key//
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_API_KEY,
