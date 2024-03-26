@@ -5,13 +5,13 @@ import * as yup from "yup";
 
 export const Form = () => {
   const schema = yup.object().shape({
-    email: yup.string().email().required(),
+    email: yup.string().email().required("Please enter a valid email address"),
     password: yup
       .string()
       .required("Please enter your password")
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})/,
-        "Must Contain at least 6 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+        "Password must be 6 or more characters, an Uppercase, a Lowercase, a Number and a Special Case Character"
       ),
     repeatPassword: yup
       .string()
@@ -41,19 +41,26 @@ export const Form = () => {
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
+            className="form-input"
             type="text"
             placeholder="m@example.com"
             {...register("email")}
           />
-          <p>{errors.email?.message}</p>
-        </div>
-        <div className="form-group">
+          <p className="form-p">{errors.email?.message}</p>
           <label htmlFor="password">Password</label>
-          <input type="password" {...register("password")} />
-          <p>{errors.password?.message}</p>
+          <input
+            className="form-input"
+            type="password"
+            {...register("password")}
+          />
+          <p className="form-p">{errors.password?.message}</p>
           <label htmlFor="repeatPassword">Repeat Password</label>
-          <input type="password" {...register("repeatPassword")} />
-          <p>{errors.repeatPassword?.message}</p>
+          <input
+            className="form-input"
+            type="password"
+            {...register("repeatPassword")}
+          />
+          <p className="form-p">{errors.repeatPassword?.message}</p>
         </div>
         <div className="regis-btn-wrapper">
           <button className="regis-btn" type={"submit"}>

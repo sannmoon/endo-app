@@ -1,13 +1,13 @@
 .title-regis {
   font-weight: bold;
-  margin-left: 25px;
   padding-top: 40px;
+  margin-left: 37px;
 }
 
 .subtitle-regis {
   font-size: 19px;
-  margin: 0px 25px 0px 25px;
   color: #777778;
+  margin-left: 40px;
 }
 
 .regis-container {
@@ -16,12 +16,33 @@
   width: 600px;
   border-radius: 10px;
   padding-bottom: 20px;
+  margin-top: 20%;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  padding-top: 40px;
+  gap: 10px;
+  margin: 40px;
+  border-radius: 6px;
+  font-weight: bold;
+  border-color: #3b83f6;
+}
+
+.form-input {
+  border-radius: 2px;
+  border: 1px solid #acadb0;
+  border-radius: 6px;
+  height: 40px;
+  font-size: medium;
+}
+
+.form-p {
+  color: red;
+  opacity: 70%;
+  font-size: small;
+  margin: 0%;
 }
 
 .regis-btn {
@@ -32,12 +53,16 @@
   border-radius: 6px;
   cursor: pointer;
   font-size: 19px;
-  width: 550px;
+  width: 520px;
 }
 
 .regis-btn-wrapper {
   align-items: center;
   display: flex;
   justify-content: center;
-  background-color: ;
+  padding-bottom: 20px;
+}
+
+.regis-btn:hover {
+  filter: brightness(80%);
 }

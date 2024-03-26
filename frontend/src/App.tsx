@@ -6,7 +6,10 @@ import { Navbar } from "./Navbar";
 
 function App() {
   return (
-    <div className="navigation">
+    <div className="navigation-container">
+      <a href="#" className="endo-app">
+        EndoApp
+      </a>
       <Router>
         <Navbar />
         <Routes>
