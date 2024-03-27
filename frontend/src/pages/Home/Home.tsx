@@ -1,5 +1,5 @@
 import "./Home.css";
-import placeholder from "../assets/placeholder.svg";
+import placeholder from "../../assets/placeholder.svg";
 import { useState } from "react";
 import Axios from "axios";
 
