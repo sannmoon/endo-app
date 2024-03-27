@@ -16,7 +16,7 @@ export const Form = () => {
     repeatPassword: yup
       .string()
       .oneOf([yup.ref("password")], "Passwords Do Not Match")
-      .required(),
+      .required("Please confirm your password"),
   });
 
   const {
@@ -43,7 +43,7 @@ export const Form = () => {
           <input
             className="form-input"
             type="text"
-            placeholder="m@example.com"
+            placeholder=" m@example.com"
             {...register("email")}
           />
           <p className="form-p">{errors.email?.message}</p>
