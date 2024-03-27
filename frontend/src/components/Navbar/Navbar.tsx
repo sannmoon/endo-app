@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const Navbar = () => {
   return (
     <div className="navi-bar">
-      <img className="uterus-img" src={logo} alt="uterus img" />
+      <img className="logo" src={logo} alt="logo" />
       <span className="app-title">EndoApp</span>
       <div className="nav-links">
         <Link to="/"> Home </Link>
