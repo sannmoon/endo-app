@@ -58,11 +58,3 @@ export const RegistrationForm = () => {
     </form>
   );
 };
-
-{
-  /* <div className="regis-btn-wrapper">
-<button className="regis-btn" type={"submit"}>
-  Register
-</button>
-</div> */
-}
