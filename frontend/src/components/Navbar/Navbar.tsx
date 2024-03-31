@@ -9,6 +9,7 @@ export const Navbar = () => {
       <span className="app-title">EndoApp</span>
       <div className="nav-links">
         <Link to="/"> Home </Link>
+        <Link to="/login">Login</Link>
         <Link to="/register"> Register </Link>
       </div>
     </div>

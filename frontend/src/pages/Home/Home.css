@@ -1,21 +1,11 @@
-.title {
-  font-weight: normal;
-  margin-left: 25px;
-  padding-top: 40px;
-}
-
-.subtitle {
-  font-size: 19px;
-  margin: 0px 25px 0px 25px;
-}
-
 .home-container {
   background-color: white;
   height: auto;
   width: 600px;
   border-radius: 10px;
-  padding-bottom: 20px;
+  padding: 35px;
   margin-top: 20%;
+  margin-bottom: 30px;
 }
 
 .image-wrapper {
@@ -45,41 +35,17 @@
 }
 
 .custom-file-upload {
-  padding: 10px 20px;
+  padding: 15px 20px;
   border: 1px solid #ccc;
   border-radius: 6px;
   background-color: #3b83f6;
   color: white;
   cursor: pointer;
   margin-right: 20px;
-  width: 60%;
+  width: 100%;
   font-size: 19px;
   display: flex;
   justify-content: center;
-}
-
-.reset-btn {
-  padding: 10px 43px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  color: #3b83f6;
-  border-color: #3b83f6;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  width: 60%;
-  font-size: 19px;
-}
-
-.process-btn {
-  background-color: #22c55e;
-  color: white;
-  padding: 15px 120px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 19px;
-  width: 550px;
 }
 
 .process-btn-wrapper {
@@ -88,9 +54,7 @@
   justify-content: center;
 }
 
-.custom-file-upload:hover,
-.reset-btn:hover,
-.process-btn:hover {
+.custom-file-upload:hover {
   filter: brightness(85%);
 }
 

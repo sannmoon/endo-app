@@ -4,24 +4,13 @@ import * as yup from "yup";
 import { LabeledInput } from "../../components/LabeledInput/LabeledInput";
 import { Button } from "../../components/Button/Button";
 
-export const RegistrationForm = () => {
+export const LoginForm = () => {
   const schema = yup.object().shape({
     email: yup.string().email().required("Please enter a valid email address"),
-    password: yup
-      .string()
-      .required("Please enter your password")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})/,
-        "Password must be 6 or more characters, an Uppercase, a Lowercase, a Number and a Special Case Character"
-      ),
-    repeatPassword: yup
-      .string()
-      .oneOf([yup.ref("password")], "Passwords Do Not Match")
-      .required("Please confirm your password"),
+    password: yup.string().required("Please enter your password"),
   });
 
   const {
-    register,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -39,30 +28,14 @@ export const RegistrationForm = () => {
           type="email"
           placeholder="m@example.com "
           errors={errors.email?.message}
-          {...register("email")}
         />
         <LabeledInput
           label="Password"
           type="password"
           errors={errors.password?.message}
-          {...register("password")}
         />
-        <LabeledInput
-          label="Repeat Password"
-          type="password"
-          errors={errors.repeatPassword?.message}
-          {...register("repeatPassword")}
-        />
-        <Button label="Register" />
+        <Button label="Login" />
       </div>
     </form>
   );
 };
-
-{
-  /* <div className="regis-btn-wrapper">
-<button className="regis-btn" type={"submit"}>
-  Register
-</button>
-</div> */
-}
