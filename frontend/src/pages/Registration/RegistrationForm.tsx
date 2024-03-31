@@ -3,8 +3,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { LabeledInput } from "../../components/LabeledInput/LabeledInput";
 import { Button } from "../../components/Button/Button";
+import { useState } from "react";
+import Axios from "axios";
 
 export const RegistrationForm = () => {
+  const [loading, setLoading] = useState(false);
+
   const schema = yup.object().shape({
     email: yup.string().email().required("Please enter a valid email address"),
     password: yup
@@ -28,9 +32,17 @@ export const RegistrationForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = async (data: any) => {
+    setLoading(true);
+    try {
+      await Axios.post(`http://localhost:3000/signup`, data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit, () => {})}>
       <div className="form-group">
@@ -53,7 +65,7 @@ export const RegistrationForm = () => {
           errors={errors.repeatPassword?.message}
           {...register("repeatPassword")}
         />
-        <Button label="Register" />
+        <Button label={loading ? "Loading 🌿" : "Signup"} />
       </div>
     </form>
   );
