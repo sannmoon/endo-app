@@ -2,6 +2,8 @@ import "./Home.css";
 import placeholder from "../../assets/placeholder.svg";
 import { useState } from "react";
 import Axios from "axios";
+import { Button } from "../../components/Button/Button";
+import { Header } from "../../components/Header/Header";
 
 export const Home = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -45,11 +47,11 @@ export const Home = () => {
 
   return (
     <div className="home-container">
-      <h1 className="title">Endo Diet</h1>
-      <p className="subtitle">
-        The application helps identify products that are or aren't healthy for
-        women suffering from endometriosis
-      </p>
+      <Header
+        title="Endo Diet"
+        subtitle="The application helps identify products that are or aren't healthy for
+        women suffering from endometriosis"
+      />
 
       <div className="image-wrapper">
         <div className="image-preview">
@@ -69,15 +71,19 @@ export const Home = () => {
             />
             Upload Image
           </label>
-          <button className="reset-btn" onClick={handleResetImage}>
-            Reset
-          </button>
+          <Button
+            label="Reset"
+            onClick={handleResetImage}
+            variation="outlined"
+          />
         </div>
       </div>
       <div className="process-btn-wrapper">
-        <button className="process-btn" onClick={handleAnalyzeImage}>
-          {loading ? <> Analyzing.. </> : <>Process Image</>}
-        </button>
+        <Button
+          label={loading ? <> Analyzing.. </> : <>Process Image</>}
+          onClick={handleAnalyzeImage}
+          color="green"
+        />
       </div>
       {generatedResult && (
         <p
