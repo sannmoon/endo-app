@@ -25,6 +25,12 @@ app.post("/signup", (req: Request, res: Response) => {
   res.send("ok");
 });
 
+app.post("/login", (req: Request, res: Response) => {
+  console.log(req.body);
+  console.log(req.body.email, req.body.password);
+  res.send("ok");
+});
+
 app.post("/analyze-image", async (req: Request, res: Response) => {
   const response = await openai.chat.completions.create({
     model: "gpt-4-vision-preview",
