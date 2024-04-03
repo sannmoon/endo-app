@@ -28,6 +28,7 @@ export const RegistrationForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -35,9 +36,15 @@ export const RegistrationForm = () => {
   const onSubmit = async (data: any) => {
     setLoading(true);
     try {
-      await Axios.post(`http://localhost:3000/signup`, data);
-    } catch (error) {
-      console.error(error);
+      const response = await Axios.post(`http://localhost:3000/signup`, data);
+      console.log(response);
+    } catch (error: any) {
+      if (error.response?.data?.errorMessage) {
+        setError("email", {
+          type: "custom",
+          message: error.response.data.errorMessage,
+        });
+      }
     } finally {
       setLoading(false);
     }
