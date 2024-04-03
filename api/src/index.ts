@@ -4,6 +4,7 @@ import cors from "cors";
 import OpenAI from "openai";
 import mysql from "mysql";
 import bcrypt from "bcrypt";
+import crypto from "crypto";
 
 dotenv.config(); // ⚠️ should always be written down first before putting the env variable key//
 
@@ -63,6 +64,7 @@ app.get("/health", (req: Request, res: Response) => {
   res.send("ok");
 });
 
+//SIGNUP LOGIC
 app.post("/signup", async (req: Request, res: Response) => {
   try {
     const { email, password, repeatPassword } = req.body;
@@ -99,10 +101,59 @@ app.post("/signup", async (req: Request, res: Response) => {
   }
 });
 
-app.post("/login", (req: Request, res: Response) => {
-  console.log(req.body);
-  console.log(req.body.email, req.body.password);
-  res.send("ok");
+//LOGIN LOGIC
+app.post("/login", async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+    console.log(email, password);
+
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ errorMessage: "Missing required fields: email and password" });
+    }
+
+    const user = await queryPromise("SELECT * FROM users WHERE email = ?", [
+      email,
+    ]);
+
+    const isMatched = await bcrypt.compare(password, user[0]?.password);
+    console.log(isMatched);
+    if (!user[0] || !isMatched) {
+      return res
+        .status(401)
+        .json({ errorMessage: "Invalid email or password" });
+      /* 🚨 It's advisable to put this message as there can be social-eng/brute-force attacks.
+      Best to just put both "Invalid email and password" 🚨 */
+    }
+
+    /* OR
+    if (!bcrypt.compare(password, userEmail[0].password)) {
+        return res.status(401).json({ errorMessage: "Invalid password" });
+    } 
+    In if statement, we can put ! to bcrypt but not when we define it 
+    DONT DO THIS ❌ const isMatched = !bcrypt.compare ❌
+    */
+
+    const token = crypto.randomBytes(48).toString("hex");
+    console.log(token);
+
+    const date24hInFuture = new Date(
+      new Date().getTime() + 60 * 60 * 24 * 1000
+    );
+
+    await queryPromise(
+      "UPDATE users SET token = ?, token_expire_at = ? WHERE id = ?",
+      [token, date24hInFuture, user[0].id]
+    );
+
+    ("UPDATE tickets SET title = ?, description = ?, active = ? WHERE id = ?");
+
+    return res.status(200).json({ token: token });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Error logging in user"); // 🚨 Internal Server Error? 🚨//
+  }
 });
 
 app.post("/analyze-image", async (req: Request, res: Response) => {
