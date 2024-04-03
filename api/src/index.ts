@@ -7,22 +7,32 @@ import bcrypt from "bcrypt";
 
 dotenv.config(); // ⚠️ should always be written down first before putting the env variable key//
 
+const {
+  OPEN_AI_API_KEY,
+  PORT,
+  DB_HOST,
+  DB_PORT,
+  DB_USER,
+  DB_PASSWORD,
+  DB_NAME,
+} = process.env;
+
 const openai = new OpenAI({
-  apiKey: process.env.OPEN_AI_API_KEY,
+  apiKey: OPEN_AI_API_KEY,
 });
 
 const app: Express = express();
-const port = process.env.PORT || 3000;
+const port = PORT || 3000;
 
 app.use(cors());
 app.use(express.json({ limit: "10mb" }));
 
 const db = mysql.createConnection({
-  host: "127.0.0.1",
-  port: 3306,
-  user: "root",
-  password: "password",
-  database: "endo-diet",
+  host: DB_HOST,
+  port: Number(DB_PORT),
+  user: DB_USER,
+  password: DB_PASSWORD,
+  database: DB_NAME,
 });
 
 db.connect((err) => {
@@ -81,9 +91,8 @@ app.post("/signup", async (req: Request, res: Response) => {
       "INSERT INTO users (email, password) VALUES (?,?)",
       users
     );
-    res.json({ id: result.insertId, email });
 
-    res.status(201).send("User created");
+    res.status(201).json({ id: result.insertId, email });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error creating user");
