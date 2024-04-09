@@ -32,7 +32,8 @@
   padding: 20px 20px;
 }
 
-.nav-links a {
+.nav-links a,
+span {
   text-decoration: none;
   margin: 0px 20px;
   color: #3b83f6;

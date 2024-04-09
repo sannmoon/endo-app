@@ -94,7 +94,19 @@ app.post("/signup", async (req: Request, res: Response) => {
       users
     );
 
-    res.status(201).json({ id: result.insertId, email });
+    const token = crypto.randomBytes(48).toString("hex");
+    console.log(token);
+
+    const date24hInFuture = new Date(
+      new Date().getTime() + 60 * 60 * 24 * 1000
+    );
+
+    await queryPromise(
+      "UPDATE users SET token = ?, token_expire_at = ? WHERE id = ?",
+      [token, date24hInFuture, result.insertId]
+    );
+
+    res.status(201).json({ id: result.insertId, email, token });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error creating user");
@@ -123,6 +135,7 @@ app.post("/login", async (req: Request, res: Response) => {
       return res
         .status(401)
         .json({ errorMessage: "Invalid email or password" });
+
       /* 🚨 It's advisable to put this message as there can be social-eng/brute-force attacks.
       Best to just put both "Invalid email and password" 🚨 */
     }
@@ -146,9 +159,6 @@ app.post("/login", async (req: Request, res: Response) => {
       "UPDATE users SET token = ?, token_expire_at = ? WHERE id = ?",
       [token, date24hInFuture, user[0].id]
     );
-
-    ("UPDATE tickets SET title = ?, description = ?, active = ? WHERE id = ?");
-
     return res.status(200).json({ token: token });
   } catch (error) {
     console.error(error);
