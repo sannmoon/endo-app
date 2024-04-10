@@ -95,7 +95,6 @@ app.post("/signup", async (req: Request, res: Response) => {
     );
 
     const token = crypto.randomBytes(48).toString("hex");
-    console.log(token);
 
     const date24hInFuture = new Date(
       new Date().getTime() + 60 * 60 * 24 * 1000
@@ -149,7 +148,6 @@ app.post("/login", async (req: Request, res: Response) => {
     */
 
     const token = crypto.randomBytes(48).toString("hex");
-    console.log(token);
 
     const date24hInFuture = new Date(
       new Date().getTime() + 60 * 60 * 24 * 1000

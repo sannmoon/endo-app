@@ -46,7 +46,6 @@ export const RegistrationForm = () => {
       localStorage.setItem("token", response.data.token); //Storing token in local storage
       setIsLoggedIn(true);
       navigate("/");
-      console.log(response);
     } catch (error: any) {
       if (error.response?.data?.errorMessage) {
         setError("email", {
