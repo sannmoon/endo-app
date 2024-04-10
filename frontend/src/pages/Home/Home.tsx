@@ -1,12 +1,20 @@
 import "./Home.css";
 import placeholder from "../../assets/placeholder.svg";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Axios from "axios";
 import { Button } from "../../components/Button/Button";
 import { Header } from "../../components/Header/Header";
+import { Navigate } from "react-router-dom";
+import { AppContent } from "../../App";
 
 export const Home = () => {
+  const { isLoggedIn } = useContext(AppContent);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       return;

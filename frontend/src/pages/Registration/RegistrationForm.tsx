@@ -3,11 +3,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { LabeledInput } from "../../components/LabeledInput/LabeledInput";
 import { Button } from "../../components/Button/Button";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { AppContent } from "../../App";
 
 export const RegistrationForm = () => {
+  const { setIsLoggedIn } = useContext(AppContent);
+
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const schema = yup.object().shape({
     email: yup.string().email().required("Please enter a valid email address"),
@@ -37,7 +43,9 @@ export const RegistrationForm = () => {
     setLoading(true);
     try {
       const response = await Axios.post(`http://localhost:3000/signup`, data);
-      console.log(response);
+      localStorage.setItem("token", response.data.token); //Storing token in local storage
+      setIsLoggedIn(true);
+      navigate("/");
     } catch (error: any) {
       if (error.response?.data?.errorMessage) {
         setError("email", {
