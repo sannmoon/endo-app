@@ -61,7 +61,6 @@ authRouter.post("/signup", async (req: Request, res: Response) => {
 authRouter.post("/login", async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
-    console.log(email, password);
 
     if (!email || !password) {
       return res
@@ -74,7 +73,6 @@ authRouter.post("/login", async (req: Request, res: Response) => {
     ]);
 
     const isMatched = await bcrypt.compare(password, user[0]?.password);
-    console.log(isMatched);
     if (!user[0] || !isMatched) {
       return res
         .status(401)
