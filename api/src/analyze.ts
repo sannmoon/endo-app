@@ -2,8 +2,6 @@ import { Request, Response, Router } from "express";
 import OpenAI from "openai";
 import { checkAuthentication } from "./auth";
 
-const express = require("express");
-
 const { OPEN_AI_API_KEY } = process.env;
 
 const openai = new OpenAI({
