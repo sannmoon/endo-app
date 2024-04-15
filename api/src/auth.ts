@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import { NextFunction, Request, Response, Router } from "express";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
 import { queryPromise } from "./db";
@@ -98,3 +98,26 @@ authRouter.post("/login", async (req: Request, res: Response) => {
     return res.status(500).send("Error logging in user"); // 🚨 Internal Server Error? 🚨//
   }
 });
+
+export const checkAuthentication = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const token = req.headers["auth-token"]; // if we put "-", gotta put []
+
+  const foundUsers = await queryPromise("SELECT * FROM users WHERE token = ?", [
+    token,
+  ]);
+
+  const user = foundUsers[0];
+
+  const today = new Date();
+  const expiryDate = new Date(user.token_expire_at);
+
+  if (foundUsers.length === 0 || today > expiryDate) {
+    return res.status(401).json({ msg: "Authorization denied 🤡" });
+  } else {
+    next();
+  }
+};
