@@ -3,15 +3,12 @@ import OpenAI from "openai";
 import { checkAuthentication } from "./auth";
 
 const express = require("express");
-const app = express();
 
 const { OPEN_AI_API_KEY } = process.env;
 
 const openai = new OpenAI({
   apiKey: OPEN_AI_API_KEY,
 });
-
-app.use(express.json());
 
 export const analyzeRouter = Router();
 
