@@ -41,10 +41,19 @@ export const Home = () => {
 
   const handleAnalyzeImage = async () => {
     setLoading(true);
+
     try {
-      const res = await Axios.post(`http://localhost:3000/analyze-image`, {
-        image: selectedImage,
-      });
+      const res = await Axios.post(
+        `http://localhost:3000/analyze-image`,
+        {
+          image: selectedImage,
+        },
+        {
+          headers: {
+            "auth-token": localStorage.getItem("token"),
+          },
+        }
+      );
       setGeneratedResults(res.data.result);
       setLoading(false);
     } catch (error) {
