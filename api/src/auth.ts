@@ -113,7 +113,7 @@ export const checkAuthentication = async (
   const user = foundUsers[0];
 
   const today = new Date();
-  const expiryDate = new Date(user.token_expire_at);
+  const expiryDate = new Date(user?.token_expire_at);
 
   if (foundUsers.length === 0 || today > expiryDate) {
     return res.status(401).json({ msg: "Authorization denied 🤡" });

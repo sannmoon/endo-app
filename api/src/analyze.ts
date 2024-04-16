@@ -56,3 +56,26 @@ analyzeRouter.post(
     res.send({ result: analyzedResult });
   }
 );
+
+//ANALYSIS
+
+analyzeRouter.get("/analysis", checkAuthentication, async (req, res) => {
+  const user = req.currentUser;
+
+  try {
+    const result = await queryPromise(
+      "SELECT * FROM analysis WHERE user_id = ?",
+      [user.id]
+    );
+
+    if (result.length === 0) {
+      res
+        .status(200)
+        .json({ msg: "No Matching Records Found", length: result.length });
+    }
+
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to load info" });
+  }
+});
