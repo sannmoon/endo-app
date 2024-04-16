@@ -1,6 +1,8 @@
 import { Request, Response, Router } from "express";
 import OpenAI from "openai";
 import { checkAuthentication } from "./auth";
+import { queryPromise } from "./db";
+import { v2 as cloudinary } from "cloudinary";
 
 const { OPEN_AI_API_KEY } = process.env;
 
@@ -14,6 +16,7 @@ analyzeRouter.post(
   "/analyze-image",
   checkAuthentication,
   async (req: Request, res: Response) => {
+    const base64Image = req.body.image;
     const response = await openai.chat.completions.create({
       model: "gpt-4-vision-preview",
       messages: [
@@ -32,7 +35,7 @@ analyzeRouter.post(
             {
               type: "image_url",
               image_url: {
-                url: req.body.image,
+                url: base64Image,
               },
             },
           ],
@@ -40,6 +43,16 @@ analyzeRouter.post(
       ],
     });
 
-    res.send({ result: response.choices[0].message.content });
+    const user = req.currentUser;
+    const analyzedResult = response.choices[0].message.content;
+    const now = new Date();
+
+    const cloudinaryResponse = await cloudinary.uploader.upload(base64Image);
+
+    const result = await queryPromise(
+      "INSERT INTO analysis (analyzed_results, image_url , user_id, created_at) VALUES (?,?,?,?)",
+      [analyzedResult, cloudinaryResponse.secure_url, user.id, now]
+    );
+    res.send({ result: analyzedResult });
   }
 );

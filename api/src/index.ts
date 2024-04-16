@@ -4,8 +4,16 @@ dotenv.config(); // ⚠️ should always be written down first before putting th
 import express, { Express } from "express";
 import cors from "cors";
 import { routes } from "./routes";
+import { v2 as cloudinary } from "cloudinary";
 
-const { PORT } = process.env;
+const { PORT, CLOUDINARY_NAME, CLOUDINARY_KEY, CLOUDINARY_PASSWORD } =
+  process.env;
+
+cloudinary.config({
+  cloud_name: CLOUDINARY_NAME,
+  api_key: CLOUDINARY_KEY,
+  api_secret: CLOUDINARY_PASSWORD,
+});
 
 const app: Express = express();
 const port = PORT || 3000;
