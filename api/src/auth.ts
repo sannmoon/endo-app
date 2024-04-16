@@ -118,6 +118,14 @@ export const checkAuthentication = async (
   if (foundUsers.length === 0 || today > expiryDate) {
     return res.status(401).json({ msg: "Authorization denied 🤡" });
   } else {
+    req.currentUser = user;
     next();
   }
 };
+
+/* 
+    req.currentUser = user;
+this assigns the currently authenticated user's info (stored in the user variable) to a property 
+named currentUser on the req (request) object.
+By storing the user data in req.currentUser, it becomes readily accessible in subsequent middleware functions
+or route handlers that might need to know who the authenticated user is. */
