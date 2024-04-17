@@ -68,13 +68,28 @@ analyzeRouter.get("/analysis", checkAuthentication, async (req, res) => {
       [user.id]
     );
 
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to load info" });
+  }
+});
+
+analyzeRouter.get("/analysis/:id", checkAuthentication, async (req, res) => {
+  //":" is just to indicate that id is dynamic
+  const user = req.currentUser;
+  const id = req.params.id;
+
+  try {
+    const result = await queryPromise(
+      "SELECT * FROM analysis WHERE user_id = ? AND id = ?",
+      [user.id, id]
+    );
+
     if (result.length === 0) {
-      res
-        .status(200)
-        .json({ msg: "No Matching Records Found", length: result.length });
+      res.status(404).json({ msg: "No Matching Analysis Found" });
     }
 
-    res.status(200).json(result);
+    res.status(200).json(result[0]);
   } catch (err) {
     res.status(500).json({ error: "Failed to load info" });
   }
