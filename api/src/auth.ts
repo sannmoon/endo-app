@@ -72,7 +72,7 @@ authRouter.post("/login", async (req: Request, res: Response) => {
       email,
     ]);
 
-    const isMatched = await bcrypt.compare(password, user[0]?.password);
+    const isMatched = await bcrypt.compare(password, user[0]?.password || "");
     if (!user[0] || !isMatched) {
       return res
         .status(401)

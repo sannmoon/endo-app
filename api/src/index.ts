@@ -15,7 +15,7 @@ cloudinary.config({
   api_secret: CLOUDINARY_PASSWORD,
 });
 
-const app: Express = express();
+export const app: Express = express();
 const port = PORT || 3000;
 
 app.use(cors());

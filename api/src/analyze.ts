@@ -53,12 +53,11 @@ analyzeRouter.post(
       "INSERT INTO analysis (analyzed_results, image_url , user_id, created_at) VALUES (?,?,?,?)",
       [analyzedResult, cloudinaryResponse.secure_url, user.id, now]
     );
-    res.send({ result: analyzedResult });
+    return res.send({ result: analyzedResult });
   }
 );
 
-//ANALYSIS
-
+//ANALYSIS ENDPOINT
 analyzeRouter.get("/analysis", checkAuthentication, async (req, res) => {
   const user = req.currentUser;
 
@@ -68,12 +67,13 @@ analyzeRouter.get("/analysis", checkAuthentication, async (req, res) => {
       [user.id]
     );
 
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ error: "Failed to load info" });
+    return res.status(500).json({ error: "Failed to load info" });
   }
 });
 
+// GET RESULT ANALYSIS ENDPOINT
 analyzeRouter.get("/analysis/:id", checkAuthentication, async (req, res) => {
   //":" is just to indicate that id is dynamic
   const user = req.currentUser;
@@ -86,11 +86,35 @@ analyzeRouter.get("/analysis/:id", checkAuthentication, async (req, res) => {
     );
 
     if (result.length === 0) {
-      res.status(404).json({ msg: "No Matching Analysis Found" });
+      return res.status(404).json({ msg: "No Matching Analysis Found" });
     }
 
-    res.status(200).json(result[0]);
+    return res.status(200).json(result[0]);
   } catch (err) {
-    res.status(500).json({ error: "Failed to load info" });
+    return res.status(500).json({ error: "Failed to load info" });
+  }
+});
+
+// DELETE RESULT ANALYSIS ENDPOINT
+analyzeRouter.delete("/analysis/:id", checkAuthentication, async (req, res) => {
+  const user = req.currentUser;
+  const id = req.params.id;
+
+  try {
+    const result = await queryPromise(
+      "DELETE FROM analysis WHERE user_id = ? AND id = ?",
+      [user.id, id]
+    );
+
+    if (result.affectedRows === 0) {
+      return res
+        .status(404)
+        .json({ error: "Unable to find any matching analysis" });
+    }
+
+    return res.status(200).json({ msg: "Successfully removed!" });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: "Failed to delete the analysis" });
   }
 });
