@@ -9,8 +9,8 @@ export const Navbar = () => {
 
   const { isLoggedIn, setIsLoggedIn } = useContext(AppContent);
   const handleLogOut = () => {
-    setIsLoggedIn(false);
     localStorage.removeItem("token");
+    setIsLoggedIn(false);
     navigate("/login");
   };
 
@@ -25,6 +25,7 @@ export const Navbar = () => {
             <Link to="/login">Login</Link> <Link to="/register"> Signup </Link>
           </>
         )}
+        {isLoggedIn && <Link to="/analysis-results"> Analysis Results</Link>}
         {isLoggedIn && <span onClick={handleLogOut}>Log Out</span>}
       </div>
     </div>
