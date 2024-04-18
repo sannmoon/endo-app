@@ -22,7 +22,6 @@ export const AnalysisResults = () => {
           "auth-token": localStorage.getItem("token"),
         },
       });
-      console.log(res.data);
       setAnalysisResults(res.data);
     } catch (error) {
       console.error(error);
