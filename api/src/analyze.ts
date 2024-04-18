@@ -58,7 +58,7 @@ analyzeRouter.post(
 );
 
 //ANALYSIS ENDPOINT
-analyzeRouter.get("/analysis", checkAuthentication, async (req, res) => {
+analyzeRouter.get("/analyses", checkAuthentication, async (req, res) => {
   const user = req.currentUser;
 
   try {
