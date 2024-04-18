@@ -1,15 +1,17 @@
-import "./AnalysisResults.css";
+import "./AnalysisList.css";
 import { Card } from "../../components/Card/Card";
 import { useContext, useEffect, useState } from "react";
 import Axios from "axios";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { AppContent } from "../../App";
 
 const MAX_LENGTH = 300;
 
-export const AnalysisResults = () => {
+export const AnalysisList = () => {
   const [analysisResults, setAnalysisResults] = useState<any[]>([]);
   const { isLoggedIn } = useContext(AppContent);
+
+  const navigate = useNavigate();
 
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
@@ -17,7 +19,7 @@ export const AnalysisResults = () => {
 
   const fetchData = async () => {
     try {
-      const res = await Axios.get(`http://localhost:3000/analysis`, {
+      const res = await Axios.get(`http://localhost:3000/analyses`, {
         headers: {
           "auth-token": localStorage.getItem("token"),
         },
@@ -42,12 +44,15 @@ export const AnalysisResults = () => {
         return (
           <Card
             imageUrl={analysisResult.image_url}
-            title={`Analysis ${index + 1}`}
+            title={`Analysis ${index + 1} (ID: ${analysisResult.id})`}
             description={
               description.length > MAX_LENGTH
                 ? `${description.substring(0, MAX_LENGTH)}...`
                 : description
             }
+            onClick={() => {
+              navigate(`/analysis-results/${analysisResult.id}`);
+            }}
           />
         );
       })}
