@@ -41,7 +41,6 @@ export const Home = () => {
 
   const handleAnalyzeImage = async () => {
     setLoading(true);
-
     try {
       const res = await Axios.post(
         `http://localhost:3000/analyze-image`,
