@@ -19,7 +19,7 @@ export const AnalysisList = () => {
 
   const fetchData = async () => {
     try {
-      const res = await Axios.get(`http://localhost:3000/analyses`, {
+      const res = await Axios.get(`${import.meta.env.API_URL}/analyses`, {
         headers: {
           "auth-token": localStorage.getItem("token"),
         },

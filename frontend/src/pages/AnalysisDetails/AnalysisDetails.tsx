@@ -11,7 +11,7 @@ export const AnalysisDetails = () => {
 
   const fetchDetails = async () => {
     try {
-      const res = await Axios.get(`http://localhost:3000/analysis/${id}`, {
+      const res = await Axios.get(`${import.meta.env.API_URL}/analysis/${id}`, {
         headers: {
           "auth-token": localStorage.getItem("token"),
         },

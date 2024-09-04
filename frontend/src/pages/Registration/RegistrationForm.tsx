@@ -42,7 +42,10 @@ export const RegistrationForm = () => {
   const onSubmit = async (data: any) => {
     setLoading(true);
     try {
-      const response = await Axios.post(`http://localhost:3000/signup`, data);
+      const response = await Axios.post(
+        `${import.meta.env.API_URL}/signup`,
+        data
+      );
       localStorage.setItem("token", response.data.token); //Storing token in local storage
       setIsLoggedIn(true);
       navigate("/");

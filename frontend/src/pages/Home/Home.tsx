@@ -43,7 +43,7 @@ export const Home = () => {
     setLoading(true);
     try {
       const res = await Axios.post(
-        `http://localhost:3000/analyze-image`,
+        `${import.meta.env.API_URL}/analyze-image`,
         {
           image: selectedImage,
         },
