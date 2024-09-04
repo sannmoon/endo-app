@@ -31,7 +31,10 @@ export const LoginForm = () => {
   const onSubmit = async (data: any) => {
     setLoading(true);
     try {
-      const response = await Axios.post(`http://localhost:3000/login`, data);
+      const response = await Axios.post(
+        `${import.meta.env.API_URL}/login`,
+        data
+      );
       localStorage.setItem("token", response.data.token); //Storing token in local storage
       setIsLoggedIn(true);
       navigate("/"); // redirecting to homepage after successfully logged in
