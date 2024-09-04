@@ -50,9 +50,7 @@ export const AnalysisList = () => {
                 ? `${description.substring(0, MAX_LENGTH)}...`
                 : description
             }
-            onClick={() => {
-              navigate(`/analysis-results/${analysisResult.id}`);
-            }}
+            onClick={() => navigate(`/analysis-results/${analysisResult.id}`)}
           />
         );
       })}
