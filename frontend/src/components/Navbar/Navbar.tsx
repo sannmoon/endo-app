@@ -14,26 +14,41 @@ export const Navbar = () => {
     navigate("/login");
   };
 
+  const NavLink = ({ label, to }: { label: string; to: string }) => (
+    <Link className="nav-links" to={to}>
+      {label}
+    </Link>
+  );
+
   return (
     <div className="absolute top-0 left-0 w-full h-16 bg-white">
-      <img className="logo" src={logo} alt="logo" />
-      {/* <img className="h-15 mr-4" src={logo} alt="logo" /> */}
-      <span className="app-title">EndoApp</span>
-      {/* <span className="text-3xl font-semibold text-[#3b83f6] ml-4"> */}
-      <div className="nav-links">
-        {/* <div className="ml-auto flex items-center space-x-6"> */}
-        <Link to="/"> Home </Link>
-        {/* <Link to="/" className="text-[#3b83f6] text-xl font-semibold"> */}
+      <img
+        className="max-w-0 h-15 mt-0.5 mr-0 mb-px ml-[27px]"
+        src={logo}
+        alt="logo"
+      />
+      <span className="absolute top-0 left-0 text-3xl font-semibold no-underline py-4 pr-4 pl-[90px] text-[#3b83f6]">
+        EndoApp
+      </span>
+      <div className="absolute top-0 right-0 my-0 mx-2.5 p-5">
+        <Link className="nav-links" to="/">
+          {" "}
+          Home{" "}
+        </Link>
         {!isLoggedIn && (
           <>
-            <Link to="/login">Login</Link> <Link to="/register"> Signup </Link>
-            {/* <Link to="/login" className="text-[#3b83f6] text-xl font-semibold"> */}
+            <NavLink label="Login" to="/login" />
+            <NavLink label="Signup" to="/register" />
           </>
         )}
-        {isLoggedIn && <Link to="/analysis-results"> Analysis Results</Link>}
-        {/* <Link to="/register" className="text-[#3b83f6] text-xl font-semibold"> */}
-        {isLoggedIn && <span onClick={handleLogOut}>Log Out</span>}
-        {/* className="text-[#3b83f6] text-xl font-semibold cursor-pointer" */}
+        {isLoggedIn && (
+          <NavLink label=" Analysis Results" to="/analysis-results" />
+        )}
+        {isLoggedIn && (
+          <span className="nav-links" onClick={handleLogOut}>
+            Log Out
+          </span>
+        )}
       </div>
     </div>
   );

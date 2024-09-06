@@ -1,23 +1,24 @@
-.form-input {
-  border-radius: 2px;
-  border: 1px solid #acadb0;
-  border-radius: 6px;
-  height: 40px;
-  font-size: medium;
-  padding-left: 10px;
-  margin-top: 10px;
+/* .labeled-input-wrapper {
+  margin-bottom: 25px; mb-6
+  display: flex; flex
+  flex-direction: column; flex-col
 }
+
+.form-input {
+  border-radius: 6px; rounded-md
+  border: 1px solid #acadb0; border border-[#acadb0] no need to put border-solid aye
+  height: 40px;  h-10
+  font-size: medium; text-base
+  padding-left: 10px; pl-2.5
+  margin-top: 10px; mt-2.5
+}
+
+rounded-md border border-[#acadb0] no need to put border-solid aye h-10  text-base  pl-2.5 mt-2.5
 
 .form-errors {
-  color: red;
-  opacity: 70%;
-  font-size: small;
-  margin: 0%;
-  padding-top: 7px;
-}
-
-.labeled-input-wrapper {
-  margin-bottom: 25px;
-  display: flex;
-  flex-direction: column;
-}
+  color: red;  text-red-500
+  opacity: 70%; opacity-70
+  font-size: small; text-sm
+  margin: 0; m-0
+  padding-top: 7px; pt-1.5
+} */

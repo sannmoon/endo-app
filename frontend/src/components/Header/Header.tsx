@@ -8,8 +8,8 @@ type Props = {
 export const Header = ({ title, subtitle }: Props) => {
   return (
     <>
-      <h1 className="header-title">{title}</h1>
-      <p className="header-subtitle">{subtitle}</p>
+      <h1 className="font-bold mb-2.5">{title}</h1>
+      <p className="text-[19px] text-[#636869] mt-0">{subtitle}</p>
     </>
   );
 };
