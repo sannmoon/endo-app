@@ -32,7 +32,7 @@ export const LoginForm = () => {
     setLoading(true);
     try {
       const response = await Axios.post(
-        `${import.meta.env.API_URL}/login`,
+        `${import.meta.env.VITE_API_URL}/login`,
         data
       );
       localStorage.setItem("token", response.data.token); //Storing token in local storage

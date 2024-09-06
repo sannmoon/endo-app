@@ -11,11 +11,14 @@ export const AnalysisDetails = () => {
 
   const fetchDetails = async () => {
     try {
-      const res = await Axios.get(`${import.meta.env.API_URL}/analysis/${id}`, {
-        headers: {
-          "auth-token": localStorage.getItem("token"),
-        },
-      });
+      const res = await Axios.get(
+        `${import.meta.env.VITE_API_URL}/analysis/${id}`,
+        {
+          headers: {
+            "auth-token": localStorage.getItem("token"),
+          },
+        }
+      );
       setAnalysisDetails(res.data);
     } catch (error) {
       console.error(error);
