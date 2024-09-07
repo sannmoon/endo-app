@@ -4,7 +4,7 @@ import "./Login.css";
 
 export const Login = () => {
   return (
-    <div className="login-container">
+    <div className="bg-white h-auto w-[600px] rounded-lg p-9 mt-[20%]">
       <Header
         title="Login"
         subtitle="Enter your email and password to get started"

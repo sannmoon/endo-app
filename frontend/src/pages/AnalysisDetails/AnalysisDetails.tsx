@@ -29,7 +29,7 @@ export const AnalysisDetails = () => {
   }, []);
 
   return (
-    <div className="analysis-details-container">
+    <div className="mt-[100px]">
       <Card
         imageUrl={analysisDetails?.image_url || placeholder}
         title={analysisDetails ? `Analysis Details` : "Analysis not found"}

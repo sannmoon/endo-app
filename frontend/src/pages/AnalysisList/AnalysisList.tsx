@@ -35,9 +35,9 @@ export const AnalysisList = () => {
   }, []); // need to put [] to stop rendering over and over again
 
   return (
-    <div className="analysis-result-container">
+    <div className="mt-[100px]">
       {analysisResults.length === 0 && (
-        <div className="no-data">No analysis found</div>
+        <div className="text-white text-[19px]">No analysis found</div>
       )}
       {analysisResults.map((analysisResult, index) => {
         const description = analysisResult.analyzed_results;

@@ -1,4 +1,4 @@
-.home-container {
+/* .home-container {
   background-color: white;
   height: auto;
   width: 600px;
@@ -28,10 +28,8 @@
 
 .button-container {
   display: flex;
-  /* gap: 10px; can use this method to add space in btwn  */
-  margin: 20px auto;
-  display: flex;
   justify-content: center;
+  margin: 20px auto;
 }
 
 .custom-file-upload {
@@ -48,12 +46,6 @@
   justify-content: center;
 }
 
-.process-btn-wrapper {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-
 .custom-file-upload:hover {
   filter: brightness(85%);
 }
@@ -62,11 +54,19 @@
   display: none;
 }
 
+.process-btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .generated-data {
   font-size: 19px;
   margin: 0px 25px 0px 25px;
+  NO NEED TO ADD "my-0" cause default is already 0px ?
   padding-top: 20px;
   text-align: justify;
   word-spacing: normal;
   white-space: pre-line;
 }
+ */

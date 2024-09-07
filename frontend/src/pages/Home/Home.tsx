@@ -62,27 +62,27 @@ export const Home = () => {
   };
 
   return (
-    <div className="home-container">
+    <div className="bg-white h-auto w-[600px] rounded-lg p-9 mt-[20%] mb-7">
       <Header
         title="Endo Diet"
         subtitle="The application helps identify products that are or aren't healthy for
         women suffering from endometriosis"
       />
 
-      <div className="image-wrapper">
-        <div className="image-preview">
+      <div className="mt-[100px] mx-[50px] mb-[50px]">
+        <div className="bg-[#eaeaea] w-[500px] h-[500px] rounded-lg overflow-hidden">
           <img
-            className="image"
+            className="w-full h-full object-cover"
             src={selectedImage ?? placeholder}
             alt="Selected Image"
           />
         </div>
 
-        <div className="button-container">
-          <label className="custom-file-upload">
+        <div className="flex justify-center mt-5 mx-auto">
+          <label className="p-4 px-5 border border-[#ccc] rounded-md bg-[#3b83f6] text-white cursor-pointer mr-5 w-full text-[19px] flex justify-center hover:brightness-90">
             <input
               type="file"
-              className="upload-img"
+              className="hidden"
               onChange={handleImageChange}
             />
             Upload Image
@@ -94,7 +94,7 @@ export const Home = () => {
           />
         </div>
       </div>
-      <div className="process-btn-wrapper">
+      <div className="flex items-center justify-center">
         <Button
           label={loading ? <> Analyzing.. </> : <>Process Image</>}
           onClick={handleAnalyzeImage}
@@ -104,7 +104,7 @@ export const Home = () => {
       {generatedResult && (
         <p
           dangerouslySetInnerHTML={{ __html: generatedResult }}
-          className="generated-data"
+          className="text-[19px] mx-6 pt-5 text-justify whitespace-pre-line"
         ></p>
       )}
     </div>

@@ -15,7 +15,10 @@ export const Navbar = () => {
   };
 
   const NavLink = ({ label, to }: { label: string; to: string }) => (
-    <Link className="nav-links" to={to}>
+    <Link
+      className="text-[#3b83f6] no-underline mx-5 font-semibold text-2xl hover:underline "
+      to={to}
+    >
       {label}
     </Link>
   );
@@ -31,10 +34,7 @@ export const Navbar = () => {
         EndoApp
       </span>
       <div className="absolute top-0 right-0 my-0 mx-2.5 p-5">
-        <Link className="nav-links" to="/">
-          {" "}
-          Home{" "}
-        </Link>
+        <NavLink label="Home" to="/" />
         {!isLoggedIn && (
           <>
             <NavLink label="Login" to="/login" />
