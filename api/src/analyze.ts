@@ -16,44 +16,49 @@ analyzeRouter.post(
   "/analyze-image",
   checkAuthentication,
   async (req: Request, res: Response) => {
-    const base64Image = req.body.image;
-    const response = await openai.chat.completions.create({
-      model: "gpt-4-turbo",
-      messages: [
-        {
-          role: "system",
-          content:
-            "You are a gynecologist that specialize in endometriosis. Analyze if this image (food) is healthy for endometriosis sufferers",
-        },
-        {
-          role: "user",
-          content: [
-            {
-              type: "text",
-              text: "Does this image containing food good for endometriosis?",
-            },
-            {
-              type: "image_url",
-              image_url: {
-                url: base64Image,
+    try {
+      const base64Image = req.body.image;
+      const response = await openai.chat.completions.create({
+        model: "gpt-4-turbo",
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are a gynecologist that specialize in endometriosis. Analyze if this image (food) is healthy for endometriosis sufferers",
+          },
+          {
+            role: "user",
+            content: [
+              {
+                type: "text",
+                text: "Does this image containing food good for endometriosis?",
               },
-            },
-          ],
-        },
-      ],
-    });
+              {
+                type: "image_url",
+                image_url: {
+                  url: base64Image,
+                },
+              },
+            ],
+          },
+        ],
+      });
 
-    const user = req.currentUser;
-    const analyzedResult = response.choices[0].message.content;
-    const now = new Date();
+      const user = req.currentUser;
+      const analyzedResult = response.choices[0].message.content;
+      const now = new Date();
 
-    const cloudinaryResponse = await cloudinary.uploader.upload(base64Image);
+      const cloudinaryResponse = await cloudinary.uploader.upload(base64Image);
 
-    const result = await queryPromise(
-      "INSERT INTO analysis (analyzed_results, image_url , user_id, created_at) VALUES (?,?,?,?)",
-      [analyzedResult, cloudinaryResponse.secure_url, user.id, now]
-    );
-    return res.send({ result: analyzedResult });
+      const result = await queryPromise(
+        "INSERT INTO analysis (analyzed_results, image_url , user_id, created_at) VALUES (?,?,?,?)",
+        [analyzedResult, cloudinaryResponse.secure_url, user.id, now]
+      );
+      return res.send({ result: analyzedResult });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Failed to analyze the image" });
+    }
   }
 );
 
