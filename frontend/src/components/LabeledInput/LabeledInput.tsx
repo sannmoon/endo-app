@@ -9,7 +9,9 @@ export const LabeledInput = React.forwardRef<HTMLInputElement, Props>(
   ({ label, errors, ...props }: Props, ref) => {
     return (
       <div className="mb-6 flex flex-col">
-        <label htmlFor={props.name}>{label}</label>
+        <label className="font-bold" htmlFor={props.name}>
+          {label}
+        </label>
         <input
           className="rounded-md border border-[#acadb0] no need to put border-solid aye h-10 text-base pl-2.5 mt-2.5"
           {...props}

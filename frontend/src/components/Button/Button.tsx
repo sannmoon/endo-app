@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import "./Button.css";
 
 type Props = {
   label: ReactElement | string;
@@ -10,11 +9,16 @@ type Props = {
 };
 
 export const Button = ({ label, type, color, onClick, variation }: Props) => {
-  let classColor = "btn-blue";
+  const outlined = `border border-solid	rounded-md bg-transparent`;
+
+  let filledClassColor = `bg-c-blue`;
+  let outlinedClassColor = `border-c-blue text-c-blue`;
   if (color === "green") {
-    classColor = "btn-green";
+    filledClassColor = `bg-c-green`;
+    outlinedClassColor = "border-c-green text-c-green";
   } else if (color === "brown") {
-    classColor = "btn-brown";
+    filledClassColor = `bg-c-brown`;
+    outlinedClassColor = "border-c-brown text-c-brown";
   }
 
   let classVariation = "filled";
@@ -25,7 +29,11 @@ export const Button = ({ label, type, color, onClick, variation }: Props) => {
   return (
     <button
       onClick={onClick}
-      className={`btn ${classColor} ${classVariation}`}
+      className={`${
+        variation === "outlined"
+          ? `${outlinedClassColor} ${outlined}`
+          : `${filledClassColor} text-white`
+      } p-4 rounded-md cursor-pointer text-lg w-full`}
       type={type}
     >
       {label}

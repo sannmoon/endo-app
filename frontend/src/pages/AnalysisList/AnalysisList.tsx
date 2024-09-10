@@ -1,4 +1,3 @@
-import "./AnalysisList.css";
 import { Card } from "../../components/Card/Card";
 import { useContext, useEffect, useState } from "react";
 import Axios from "axios";

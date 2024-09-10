@@ -1,4 +1,3 @@
-import "./Home.css";
 import placeholder from "../../assets/placeholder.svg";
 import { useContext, useState } from "react";
 import Axios from "axios";
@@ -62,7 +61,7 @@ export const Home = () => {
   };
 
   return (
-    <div className="bg-white h-auto w-[600px] rounded-lg p-9 mt-[20%] mb-7">
+    <div className="bg-white h-auto w-full max-w-[670px] rounded-lg p-9 mt-[20%] mb-7">
       <Header
         title="Endo Diet"
         subtitle="The application helps identify products that are or aren't healthy for
@@ -70,7 +69,7 @@ export const Home = () => {
       />
 
       <div className="mt-[100px] mx-[50px] mb-[50px]">
-        <div className="bg-[#eaeaea] w-[500px] h-[500px] rounded-lg overflow-hidden">
+        <div className="bg-[#eaeaea] w-full max-w-[500px] h-full rounded-lg overflow-hidden">
           <img
             className="w-full h-full object-cover"
             src={selectedImage ?? placeholder}

@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import "./AnalysisDetails.css";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import { Card } from "../../components/Card/Card";
