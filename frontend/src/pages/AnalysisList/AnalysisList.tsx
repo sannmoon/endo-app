@@ -1,4 +1,3 @@
-import "./AnalysisList.css";
 import { Card } from "../../components/Card/Card";
 import { useContext, useEffect, useState } from "react";
 import Axios from "axios";
@@ -35,9 +34,9 @@ export const AnalysisList = () => {
   }, []); // need to put [] to stop rendering over and over again
 
   return (
-    <div className="analysis-result-container">
+    <div className="mt-[100px]">
       {analysisResults.length === 0 && (
-        <div className="no-data">No analysis found</div>
+        <div className="text-white text-[19px]">No analysis found</div>
       )}
       {analysisResults.map((analysisResult, index) => {
         const description = analysisResult.analyzed_results;
@@ -50,9 +49,7 @@ export const AnalysisList = () => {
                 ? `${description.substring(0, MAX_LENGTH)}...`
                 : description
             }
-            onClick={() => {
-              navigate(`/analysis-results/${analysisResult.id}`);
-            }}
+            onClick={() => navigate(`/analysis-results/${analysisResult.id}`)}
           />
         );
       })}

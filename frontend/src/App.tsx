@@ -1,4 +1,3 @@
-import "./App.css";
 import { Home } from "./pages/Home/Home";
 import { Login } from "./pages/Login/Login";
 import { Registration } from "./pages/Registration/Registration";
@@ -25,14 +24,16 @@ function App() {
   return (
     <AppContent.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Registration />} />
-          <Route path="/analysis-results" element={<AnalysisList />} />
-          <Route path="/analysis-results/:id" element={<AnalysisDetails />} />
-        </Routes>
+        <div className="bg-[#3b83f6] text-black font-sans mx-auto w-fit">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Registration />} />
+            <Route path="/analysis-results" element={<AnalysisList />} />
+            <Route path="/analysis-results/:id" element={<AnalysisDetails />} />
+          </Routes>
+        </div>
       </Router>
     </AppContent.Provider>
   );

@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import "./AnalysisDetails.css";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import { Card } from "../../components/Card/Card";
@@ -29,7 +28,7 @@ export const AnalysisDetails = () => {
   }, []);
 
   return (
-    <div className="analysis-details-container">
+    <div className="mt-[100px]">
       <Card
         imageUrl={analysisDetails?.image_url || placeholder}
         title={analysisDetails ? `Analysis Details` : "Analysis not found"}

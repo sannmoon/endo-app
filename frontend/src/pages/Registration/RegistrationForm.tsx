@@ -63,7 +63,7 @@ export const RegistrationForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit, () => {})}>
-      <div className="form-group">
+      <div className="pt-10 gap-2 my-10 rounded-md font-bold border border-[#3b83f6]">
         <LabeledInput
           label="Email"
           type="email"

@@ -47,7 +47,7 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit, () => {})}>
-      <div className="form-group">
+      <div>
         <LabeledInput
           label="Email"
           type="email"
@@ -66,3 +66,5 @@ export const LoginForm = () => {
     </form>
   );
 };
+
+/* previously, div had form-group class but no css assigned aye */
