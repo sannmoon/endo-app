@@ -21,11 +21,6 @@ export const Button = ({ label, type, color, onClick, variation }: Props) => {
     outlinedClassColor = "border-c-brown text-c-brown";
   }
 
-  let classVariation = "filled";
-  if (variation === "outlined") {
-    classVariation = "btn-outlined";
-  }
-
   return (
     <button
       onClick={onClick}
