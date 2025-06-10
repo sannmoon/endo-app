@@ -1,4 +1,4 @@
-import mysql from "mysql";
+import mysql from "mysql2";
 
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
@@ -24,12 +24,22 @@ export function queryPromise(
   values: any[] = []
 ): any {
   return new Promise((resolve, reject) => {
-    db.query(sql, values, (error, results) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(results);
-      }
-    });
+    if (typeof sql === "string") {
+      db.query(sql, values, (error: Error | null, results: any) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results);
+        }
+      });
+    } else {
+      db.query(sql, values, (error: Error | null, results: any) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results);
+        }
+      });
+    }
   });
 }

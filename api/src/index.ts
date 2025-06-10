@@ -5,6 +5,15 @@ import express, { Express } from "express";
 import cors from "cors";
 import { routes } from "./routes";
 import { v2 as cloudinary } from "cloudinary";
+import { User } from "./types";
+
+declare global {
+  namespace Express {
+    interface Request {
+      currentUser: User;
+    }
+  }
+}
 
 const { PORT, CLOUDINARY_NAME, CLOUDINARY_KEY, CLOUDINARY_PASSWORD } =
   process.env;
